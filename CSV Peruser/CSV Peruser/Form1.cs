@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using CSV_Peruser.CSV_Items;
 
 namespace CSV_Peruser
 {
@@ -20,7 +21,7 @@ namespace CSV_Peruser
 
         private void button1_Click(object sender, EventArgs e)
         {
-            String path = "C:\\Users\\blake\\Downloads\\Gender_Stats_csv\\Gender_StatsData.csv";
+            /*String path = "C:\\Users\\blake\\Downloads\\Gender_Stats_csv\\Gender_StatsData.csv";
             int j = 0;
 
             StringBuilder sb = new StringBuilder();
@@ -47,6 +48,13 @@ namespace CSV_Peruser
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }*/
+            string something = "this, is, really, dumb";
+            StringBuilder sb = new StringBuilder();
+            Row whatve = new Row(something);
+            foreach(string rec in whatve.DataRow)
+            {
+                sb.Append(rec).Append(" ");
             }
 
             richTextBox1.Text = sb.ToString();
