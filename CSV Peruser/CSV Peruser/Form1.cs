@@ -21,43 +21,38 @@ namespace CSV_Peruser
 
         private void button1_Click(object sender, EventArgs e)
         {
-            /*String path = "C:\\Users\\blake\\Downloads\\Gender_Stats_csv\\Gender_StatsData.csv";
-            int j = 0;
+            String path = "C:\\Users\\blake\\Downloads\\Gender_Stats_csv\\Gender_StatsData.csv";
+
+            TableBuilder tb = new TableBuilder(path);
+            tb.Populate();
 
             StringBuilder sb = new StringBuilder();
 
-            try
-            {
-                using (StreamReader readFile = new StreamReader(path))
-                {
-                    string line;
-                    string[] row;
-
-                    while ((line = readFile.ReadLine()) != null && j < 5)
-                    {
-                        row = line.Split(',');
-                        foreach (string rec in row)
-                        {
-                            sb.Append(rec).Append(" ");
-                        }
-                        sb.Append("\n");
-                        j++;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }*/
-            string something = "this, is, really, dumb";
-            StringBuilder sb = new StringBuilder();
-            Row whatve = new Row(something);
-            foreach(string rec in whatve.DataRow)
+            foreach(string rec in tb.HeaderMain.DataRow)
             {
                 sb.Append(rec).Append(" ");
             }
 
+            foreach (Row rec in tb.Rows)
+            {
+                foreach (string rec1 in rec.DataRow)
+                {
+                    sb.Append(rec1).Append(" ");
+                }
+
+
+            }
+
             richTextBox1.Text = sb.ToString();
+        }
+
+        private void btn_Browse_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                richTextBox1.Text = openFileDialog1.FileName;
+                
+            }
         }
     }
 }
