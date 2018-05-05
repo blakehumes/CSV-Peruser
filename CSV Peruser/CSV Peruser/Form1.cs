@@ -9,11 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using CSV_Peruser.CSV_Items;
+using CSV_Peruser.Data_Items;
 
 namespace CSV_Peruser
 {
     public partial class Form1 : Form
     {
+        DataDriver dataDriver = new DataDriver();
+
         public Form1()
         {
             InitializeComponent();
@@ -50,9 +53,18 @@ namespace CSV_Peruser
                 StringBuilder sb = new StringBuilder();
                 StringBuilder sb2 = new StringBuilder();
 
-                data_Grid.DataSource = tb.Build();
+                List<string> headerList = new List<string>();
+                foreach(string name in tb.HeaderMain.CSVRow)
+                {
+                    headerList.Add(name);
+                }
 
-                int i = 1;
+                combo_LeftFilter1.Items.AddRange(headerList.ToArray());
+                dataDriver.Table = tb.Build();
+                data_Grid.DataSource = dataDriver.Table;
+
+
+                /*int i = 1;
                 foreach (string rec in tb.HeaderMain.DataRow)
                 {
 
@@ -75,7 +87,7 @@ namespace CSV_Peruser
 
                 }
 
-                richTextBox1.Text = sb2.Append("\n").Append(sb.ToString()).ToString();
+                richTextBox1.Text = sb2.Append("\n").Append(sb.ToString()).ToString();*/
             }
             else
             {
@@ -92,6 +104,13 @@ namespace CSV_Peruser
                 btn_Load.Visible = true;
 
             }
+        }
+
+        private void combo_LeftFilter1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<string> filteredList = new List<string>();
+
+            DataRow[] foundRows = dataDriver.Table.Select();
         }
     }
 }

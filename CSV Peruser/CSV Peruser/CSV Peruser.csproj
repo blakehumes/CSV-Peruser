@@ -49,6 +49,8 @@
     <Compile Include="CSV Items\Header.cs" />
     <Compile Include="CSV Items\Row.cs" />
     <Compile Include="CSV Items\TableBuilder.cs" />
+    <Compile Include="Data Items\DataDriver.cs" />
+    <Compile Include="Data Items\DataPod.cs" />
     <Compile Include="Data Items\Utility.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

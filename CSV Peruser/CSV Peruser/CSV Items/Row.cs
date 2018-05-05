@@ -11,13 +11,13 @@ namespace CSV_Peruser.CSV_Items
 {
     class Row
     {
-        public List<string> DataRow { get; set; }
+        public List<string> CSVRow { get; set; }
 
         public static char delimiter = ',';
 
         public Row(string line)
         {
-            this.DataRow = new List<string>();
+            this.CSVRow = new List<string>();
 
             this.WriteRow(line);
         }
@@ -38,7 +38,7 @@ namespace CSV_Peruser.CSV_Items
                 foreach (string rec in row)
                 {
                     temp = CleanString(rec);
-                    this.DataRow.Add(temp);
+                    this.CSVRow.Add(temp);
                 }
             }
         }

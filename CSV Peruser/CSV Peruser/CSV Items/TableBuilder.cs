@@ -55,7 +55,7 @@ namespace CSV_Peruser.CSV_Items
         {
             DataTable dataTable = new DataTable();
 
-            foreach(string rec in this.HeaderMain.DataRow)
+            foreach(string rec in this.HeaderMain.CSVRow)
             {
                 dataTable.Columns.Add(rec, typeof(string));
             }
@@ -67,7 +67,7 @@ namespace CSV_Peruser.CSV_Items
 
             foreach(Row rec in this.Rows)
             {
-                dataTable.Rows.Add(rec.DataRow.ToArray());
+                dataTable.Rows.Add(rec.CSVRow.ToArray());
             }
 
             return dataTable;
