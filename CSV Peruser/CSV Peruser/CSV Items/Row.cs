@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using CSV_Peruser.Data_Items;
+using Microsoft.VisualBasic.FileIO;
 
 namespace CSV_Peruser.CSV_Items
 {
@@ -10,23 +13,33 @@ namespace CSV_Peruser.CSV_Items
     {
         public List<string> DataRow { get; set; }
 
+        public static char delimiter = ',';
+
         public Row(string line)
         {
             this.DataRow = new List<string>();
 
-            this.WriteRow(line, ',');
+            this.WriteRow(line);
         }
 
-        public void WriteRow(string r, char c)
+        public void WriteRow(string r)
         {
-            string[] row = r.Split(c);
+            r = r.TrimEnd(Row.delimiter);
+            Stream stream = Utility.GetStream(r);
+                
 
-            string temp = "";
-
-            foreach (string rec in row)
+            using (TextFieldParser parser = new TextFieldParser(stream))
             {
-                temp = CleanString(rec);
-                this.DataRow.Add(temp);
+                parser.Delimiters = new string[] { "," };
+                string[] row = parser.ReadFields();
+
+                string temp = "";
+
+                foreach (string rec in row)
+                {
+                    temp = CleanString(rec);
+                    this.DataRow.Add(temp);
+                }
             }
         }
 

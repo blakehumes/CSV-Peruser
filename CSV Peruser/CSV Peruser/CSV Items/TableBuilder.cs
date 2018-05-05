@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Data;
+using Microsoft.VisualBasic.FileIO;
+using CSV_Peruser;
 
 namespace CSV_Peruser.CSV_Items
 {
@@ -25,6 +27,8 @@ namespace CSV_Peruser.CSV_Items
 
         public void Populate()
         {
+           
+
             try
             {
                 using (StreamReader readFile = new StreamReader(this._path))

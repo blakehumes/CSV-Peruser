@@ -23,6 +23,18 @@ namespace CSV_Peruser
         {
             string path = txtbx_Filepath.Text;
             string ext = Path.GetExtension(path);
+            switch (combo_Delimeter.SelectedIndex)
+            {
+                case 0:
+                    Row.delimiter = ',';
+                    break;
+                case 1:
+                    Row.delimiter = '\t';
+                    break;
+                case 2:
+                    Row.delimiter = ';';
+                    break;
+            }
 
             if (ext == ".csv")
             {
@@ -40,8 +52,8 @@ namespace CSV_Peruser
 
                 data_Grid.DataSource = tb.Build();
 
-                /*int i = 1;
-                  foreach (string rec in tb.HeaderMain.DataRow)
+                int i = 1;
+                foreach (string rec in tb.HeaderMain.DataRow)
                 {
 
                     sb.Append(i).Append("- ").Append(rec).Append(" ,");
@@ -49,7 +61,7 @@ namespace CSV_Peruser
                 }
                 sb2.Append(tb.HeaderMain.DataRow.Count).Append(" ");
                 sb.Append("\n");
-                
+
                 foreach (Row rec in tb.Rows)
                 {
                     i = 1;
@@ -63,7 +75,7 @@ namespace CSV_Peruser
 
                 }
 
-                richTextBox1.Text = sb2.Append("\n").Append(sb.ToString()).ToString();*/
+                richTextBox1.Text = sb2.Append("\n").Append(sb.ToString()).ToString();
             }
             else
             {
@@ -78,7 +90,7 @@ namespace CSV_Peruser
             {
                 txtbx_Filepath.Text = openFileDialog1.FileName;
                 btn_Load.Visible = true;
-                
+
             }
         }
     }
