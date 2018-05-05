@@ -21,36 +21,63 @@ namespace CSV_Peruser
 
         private void button1_Click(object sender, EventArgs e)
         {
-            String path = "C:\\Users\\blake\\Downloads\\Gender_Stats_csv\\Gender_StatsData.csv";
+            string path = txtbx_Filepath.Text;
+            string ext = Path.GetExtension(path);
 
-            TableBuilder tb = new TableBuilder(path);
-            tb.Populate();
-
-            StringBuilder sb = new StringBuilder();
-
-            foreach(string rec in tb.HeaderMain.DataRow)
+            if (ext == ".csv")
             {
-                sb.Append(rec).Append(" ");
-            }
-
-            foreach (Row rec in tb.Rows)
-            {
-                foreach (string rec1 in rec.DataRow)
+                TableBuilder tb = new TableBuilder(path);
+                tb.Populate();
+                if (tb.fileReadGood == false)
                 {
-                    sb.Append(rec1).Append(" ");
+                    MessageBox.Show("Error Reading File. File may be in use by another program.",
+                        "File Error", MessageBoxButtons.OK);
+                    return;
+
+                }
+                StringBuilder sb = new StringBuilder();
+                StringBuilder sb2 = new StringBuilder();
+
+                data_Grid.DataSource = tb.Build();
+
+                /*int i = 1;
+                  foreach (string rec in tb.HeaderMain.DataRow)
+                {
+
+                    sb.Append(i).Append("- ").Append(rec).Append(" ,");
+                    i++;
+                }
+                sb2.Append(tb.HeaderMain.DataRow.Count).Append(" ");
+                sb.Append("\n");
+                
+                foreach (Row rec in tb.Rows)
+                {
+                    i = 1;
+                    foreach (string rec1 in rec.DataRow)
+                    {
+                        sb.Append(i).Append(" - ").Append(rec1).Append(" ,");
+                        i++;
+                    }
+                    sb2.Append(rec.DataRow.Count).Append(" ");
+                    sb.Append("\n");
+
                 }
 
-
+                richTextBox1.Text = sb2.Append("\n").Append(sb.ToString()).ToString();*/
             }
-
-            richTextBox1.Text = sb.ToString();
+            else
+            {
+                MessageBox.Show("File type error. Please select a CSV file.", "File Error", MessageBoxButtons.OK);
+                btn_Load.Visible = false;
+            }
         }
 
         private void btn_Browse_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                richTextBox1.Text = openFileDialog1.FileName;
+                txtbx_Filepath.Text = openFileDialog1.FileName;
+                btn_Load.Visible = true;
                 
             }
         }

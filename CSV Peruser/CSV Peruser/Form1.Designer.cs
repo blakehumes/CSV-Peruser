@@ -32,6 +32,9 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.btn_Browse = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.txtbx_Filepath = new System.Windows.Forms.TextBox();
+            this.data_Grid = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.data_Grid)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_Load
@@ -42,15 +45,17 @@
             this.btn_Load.TabIndex = 0;
             this.btn_Load.Text = "Load";
             this.btn_Load.UseVisualStyleBackColor = true;
+            this.btn_Load.Visible = false;
             this.btn_Load.Click += new System.EventHandler(this.button1_Click);
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 12);
+            this.richTextBox1.Location = new System.Drawing.Point(12, 324);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(896, 311);
+            this.richTextBox1.Size = new System.Drawing.Size(896, 19);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
+            this.richTextBox1.WordWrap = false;
             // 
             // btn_Browse
             // 
@@ -67,17 +72,37 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "CSV files (*.csv)|*.csv";
             // 
+            // txtbx_Filepath
+            // 
+            this.txtbx_Filepath.Location = new System.Drawing.Point(12, 349);
+            this.txtbx_Filepath.Name = "txtbx_Filepath";
+            this.txtbx_Filepath.ReadOnly = true;
+            this.txtbx_Filepath.Size = new System.Drawing.Size(287, 20);
+            this.txtbx_Filepath.TabIndex = 4;
+            // 
+            // data_Grid
+            // 
+            this.data_Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.data_Grid.Location = new System.Drawing.Point(12, 12);
+            this.data_Grid.Name = "data_Grid";
+            this.data_Grid.Size = new System.Drawing.Size(888, 306);
+            this.data_Grid.TabIndex = 5;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(912, 384);
+            this.Controls.Add(this.data_Grid);
+            this.Controls.Add(this.txtbx_Filepath);
             this.Controls.Add(this.btn_Browse);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.btn_Load);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.data_Grid)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -87,6 +112,8 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button btn_Browse;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.TextBox txtbx_Filepath;
+        private System.Windows.Forms.DataGridView data_Grid;
     }
 }
 

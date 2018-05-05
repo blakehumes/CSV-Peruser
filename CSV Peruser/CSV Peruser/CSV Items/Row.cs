@@ -33,6 +33,7 @@ namespace CSV_Peruser.CSV_Items
         public static string CleanString(string s)
         {
             s = s.Trim();
+            s = s.Replace("\"", string.Empty);
             return s;
         }
     }

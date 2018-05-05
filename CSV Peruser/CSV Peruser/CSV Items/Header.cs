@@ -8,8 +8,9 @@ namespace CSV_Peruser.CSV_Items
 {
     class Header: Row
     {
-        public Header(string line) : base(line) { }
+        private int _columnCount = 0;
 
+        public Header(string line) : base(line) { }
         
     }
 }

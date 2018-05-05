@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Data;
 
 namespace CSV_Peruser.CSV_Items
 {
@@ -14,6 +15,7 @@ namespace CSV_Peruser.CSV_Items
         public List<Row> Rows { get; set; }
 
         private string _path;
+        public bool fileReadGood = false;
 
         public TableBuilder(string path)
         {
@@ -27,11 +29,12 @@ namespace CSV_Peruser.CSV_Items
             {
                 using (StreamReader readFile = new StreamReader(this._path))
                 {
+                    fileReadGood = true;
                     string line = readFile.ReadLine();
                     HeaderMain = new Header(line);
                     int j = 0;
 
-                    while ((line = readFile.ReadLine()) != null && j < 5)
+                    while ((line = readFile.ReadLine()) != null && j < 100)
                     {
                         Rows.Add(new Row(line));
                         j++;
@@ -40,8 +43,30 @@ namespace CSV_Peruser.CSV_Items
             }
             catch (IOException ioex)
             {
-                
+                fileReadGood = false;
             }
+        }
+
+        public DataTable Build()
+        {
+            DataTable dataTable = new DataTable();
+
+            foreach(string rec in this.HeaderMain.DataRow)
+            {
+                dataTable.Columns.Add(rec, typeof(string));
+            }
+
+            for(int i =0; i < 10; i++)
+            {
+                dataTable.Columns.Add("NOPE "+i, typeof(string));
+            }
+
+            foreach(Row rec in this.Rows)
+            {
+                dataTable.Rows.Add(rec.DataRow.ToArray());
+            }
+
+            return dataTable;
         }
     }
 }
