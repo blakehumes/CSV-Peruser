@@ -38,7 +38,7 @@ namespace CSV_Peruser.CSV_Items
                     HeaderMain = new Header(line);
                     int j = 0;
 
-                    while ((line = readFile.ReadLine()) != null && j < 100)
+                    while ((line = readFile.ReadLine()) != null && j < 5000)
                     {
                         Rows.Add(new Row(line));
                         j++;
@@ -58,11 +58,6 @@ namespace CSV_Peruser.CSV_Items
             foreach(string rec in this.HeaderMain.CSVRow)
             {
                 dataTable.Columns.Add(rec, typeof(string));
-            }
-
-            for(int i =0; i < 10; i++)
-            {
-                dataTable.Columns.Add("NOPE "+i, typeof(string));
             }
 
             foreach(Row rec in this.Rows)

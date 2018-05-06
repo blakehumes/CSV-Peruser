@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.btn_Load = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.btn_Browse = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.txtbx_Filepath = new System.Windows.Forms.TextBox();
@@ -38,7 +37,12 @@
             this.grp_File_Selector = new System.Windows.Forms.GroupBox();
             this.label_LeftFilter1 = new System.Windows.Forms.Label();
             this.combo_LeftFilter1 = new System.Windows.Forms.ComboBox();
-            this.combo_LeftSelector1 = new System.Windows.Forms.ComboBox();
+            this.txtbox_LeftPod = new System.Windows.Forms.RichTextBox();
+            this.combo_LeftReturnCol = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.combo_LeftSign1 = new System.Windows.Forms.ComboBox();
+            this.txt_LeftFilter1 = new System.Windows.Forms.TextBox();
+            this.btn_LeftFilter = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.data_Grid)).BeginInit();
             this.grp_File_Selector.SuspendLayout();
             this.SuspendLayout();
@@ -53,15 +57,6 @@
             this.btn_Load.UseVisualStyleBackColor = true;
             this.btn_Load.Visible = false;
             this.btn_Load.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(347, 12);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(367, 75);
-            this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "";
-            this.richTextBox1.WordWrap = false;
             // 
             // btn_Browse
             // 
@@ -89,9 +84,9 @@
             // data_Grid
             // 
             this.data_Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.data_Grid.Location = new System.Drawing.Point(729, 12);
+            this.data_Grid.Location = new System.Drawing.Point(12, 93);
             this.data_Grid.Name = "data_Grid";
-            this.data_Grid.Size = new System.Drawing.Size(138, 75);
+            this.data_Grid.Size = new System.Drawing.Size(648, 279);
             this.data_Grid.TabIndex = 5;
             // 
             // combo_Delimeter
@@ -105,7 +100,6 @@
             this.combo_Delimeter.Name = "combo_Delimeter";
             this.combo_Delimeter.Size = new System.Drawing.Size(151, 21);
             this.combo_Delimeter.TabIndex = 6;
-            this.combo_Delimeter.SelectedIndex = 0;
             // 
             // grp_File_Selector
             // 
@@ -124,7 +118,7 @@
             // label_LeftFilter1
             // 
             this.label_LeftFilter1.AutoSize = true;
-            this.label_LeftFilter1.Location = new System.Drawing.Point(18, 169);
+            this.label_LeftFilter1.Location = new System.Drawing.Point(386, 60);
             this.label_LeftFilter1.Name = "label_LeftFilter1";
             this.label_LeftFilter1.Size = new System.Drawing.Size(38, 13);
             this.label_LeftFilter1.TabIndex = 8;
@@ -133,30 +127,80 @@
             // combo_LeftFilter1
             // 
             this.combo_LeftFilter1.FormattingEnabled = true;
-            this.combo_LeftFilter1.Location = new System.Drawing.Point(62, 166);
+            this.combo_LeftFilter1.Location = new System.Drawing.Point(430, 55);
             this.combo_LeftFilter1.Name = "combo_LeftFilter1";
             this.combo_LeftFilter1.Size = new System.Drawing.Size(135, 21);
             this.combo_LeftFilter1.TabIndex = 9;
             this.combo_LeftFilter1.SelectedIndexChanged += new System.EventHandler(this.combo_LeftFilter1_SelectedIndexChanged);
             // 
-            // combo_LeftSelector1
+            // txtbox_LeftPod
             // 
-            this.combo_LeftSelector1.FormattingEnabled = true;
-            this.combo_LeftSelector1.Location = new System.Drawing.Point(203, 166);
-            this.combo_LeftSelector1.Name = "combo_LeftSelector1";
-            this.combo_LeftSelector1.Size = new System.Drawing.Size(135, 21);
-            this.combo_LeftSelector1.TabIndex = 10;
+            this.txtbox_LeftPod.Location = new System.Drawing.Point(760, 12);
+            this.txtbox_LeftPod.Name = "txtbox_LeftPod";
+            this.txtbox_LeftPod.ReadOnly = true;
+            this.txtbox_LeftPod.Size = new System.Drawing.Size(139, 206);
+            this.txtbox_LeftPod.TabIndex = 11;
+            this.txtbox_LeftPod.Text = "";
+            this.txtbox_LeftPod.WordWrap = false;
+            // 
+            // combo_LeftReturnCol
+            // 
+            this.combo_LeftReturnCol.FormattingEnabled = true;
+            this.combo_LeftReturnCol.Location = new System.Drawing.Point(430, 28);
+            this.combo_LeftReturnCol.Name = "combo_LeftReturnCol";
+            this.combo_LeftReturnCol.Size = new System.Drawing.Size(135, 21);
+            this.combo_LeftReturnCol.TabIndex = 13;
+            this.combo_LeftReturnCol.SelectedIndexChanged += new System.EventHandler(this.combo_LeftReturnCol_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(347, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Return Column";
+            // 
+            // combo_LeftSign1
+            // 
+            this.combo_LeftSign1.FormattingEnabled = true;
+            this.combo_LeftSign1.Location = new System.Drawing.Point(571, 55);
+            this.combo_LeftSign1.Name = "combo_LeftSign1";
+            this.combo_LeftSign1.Size = new System.Drawing.Size(59, 21);
+            this.combo_LeftSign1.TabIndex = 14;
+            this.combo_LeftSign1.SelectedIndexChanged += new System.EventHandler(this.combo_LeftSign1_SelectedIndexChanged);
+            // 
+            // txt_LeftFilter1
+            // 
+            this.txt_LeftFilter1.Location = new System.Drawing.Point(636, 55);
+            this.txt_LeftFilter1.Name = "txt_LeftFilter1";
+            this.txt_LeftFilter1.Size = new System.Drawing.Size(118, 20);
+            this.txt_LeftFilter1.TabIndex = 15;
+            // 
+            // btn_LeftFilter
+            // 
+            this.btn_LeftFilter.Location = new System.Drawing.Point(679, 81);
+            this.btn_LeftFilter.Name = "btn_LeftFilter";
+            this.btn_LeftFilter.Size = new System.Drawing.Size(75, 23);
+            this.btn_LeftFilter.TabIndex = 16;
+            this.btn_LeftFilter.Text = "Filter";
+            this.btn_LeftFilter.UseVisualStyleBackColor = true;
+            this.btn_LeftFilter.Click += new System.EventHandler(this.btn_LeftFilter_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(912, 384);
-            this.Controls.Add(this.combo_LeftSelector1);
+            this.Controls.Add(this.btn_LeftFilter);
+            this.Controls.Add(this.txt_LeftFilter1);
+            this.Controls.Add(this.combo_LeftSign1);
+            this.Controls.Add(this.combo_LeftReturnCol);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtbox_LeftPod);
             this.Controls.Add(this.combo_LeftFilter1);
             this.Controls.Add(this.label_LeftFilter1);
             this.Controls.Add(this.grp_File_Selector);
-            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.data_Grid);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -171,7 +215,6 @@
         #endregion
 
         private System.Windows.Forms.Button btn_Load;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button btn_Browse;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TextBox txtbx_Filepath;
@@ -180,7 +223,12 @@
         private System.Windows.Forms.GroupBox grp_File_Selector;
         private System.Windows.Forms.Label label_LeftFilter1;
         private System.Windows.Forms.ComboBox combo_LeftFilter1;
-        private System.Windows.Forms.ComboBox combo_LeftSelector1;
+        private System.Windows.Forms.RichTextBox txtbox_LeftPod;
+        private System.Windows.Forms.ComboBox combo_LeftReturnCol;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox combo_LeftSign1;
+        private System.Windows.Forms.TextBox txt_LeftFilter1;
+        private System.Windows.Forms.Button btn_LeftFilter;
     }
 }
 

@@ -54,12 +54,10 @@ namespace CSV_Peruser
                 StringBuilder sb2 = new StringBuilder();
 
                 List<string> headerList = new List<string>();
-                foreach(string name in tb.HeaderMain.CSVRow)
-                {
-                    headerList.Add(name);
-                }
+                dataDriver.header = tb.HeaderMain;
+                string[] headerNames = dataDriver.header.CSVRow.ToArray();
 
-                combo_LeftFilter1.Items.AddRange(headerList.ToArray());
+                combo_LeftReturnCol.Items.AddRange(headerNames);
                 dataDriver.Table = tb.Build();
                 data_Grid.DataSource = dataDriver.Table;
 
@@ -102,6 +100,7 @@ namespace CSV_Peruser
             {
                 txtbx_Filepath.Text = openFileDialog1.FileName;
                 btn_Load.Visible = true;
+                combo_Delimeter.SelectedIndex = 0;
 
             }
         }
@@ -111,6 +110,91 @@ namespace CSV_Peruser
             List<string> filteredList = new List<string>();
 
             DataRow[] foundRows = dataDriver.Table.Select();
+            string i = combo_LeftFilter1.SelectedItem.ToString();
+            string columnName;
+
+            foreach(DataRow rec in foundRows)
+            {
+                columnName = rec[i].ToString();
+
+                if(!filteredList.Contains(columnName)) filteredList.Add(columnName);
+            }
+
+            combo_LeftSelector1.Items.Clear();
+            combo_LeftSelector1.Items.AddRange(filteredList.ToArray());
+            combo_LeftSign1.Items.Clear();
+            combo_LeftSign1.Items.AddRange(new string[] { "<", "<=", "=", ">=", ">" });
+        }
+
+        private void combo_LeftReturnCol_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<string> filteredList = new List<string>();
+
+            DataRow[] foundRows = dataDriver.Table.Select();
+            string s = combo_LeftReturnCol.SelectedItem.ToString();
+            string columnName;
+            StringBuilder sb = new StringBuilder();
+
+
+
+            foreach (DataRow rec in foundRows)
+            {
+                columnName = rec[s].ToString();
+
+                if (!filteredList.Contains(columnName))
+                {
+                    filteredList.Add(columnName);
+                    sb.Append(columnName).Append("\n");
+                }
+            }
+
+            txtbox_LeftPod.Text = sb.ToString();
+
+            combo_LeftFilter1.Items.Clear();
+            combo_LeftFilter1.Items.AddRange(dataDriver.header.CSVRow.ToArray());
+        }
+
+        private void combo_LeftSign1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_LeftFilter_Click(object sender, EventArgs e)
+        {
+            string colToFilter = combo_LeftFilter1.SelectedItem.ToString();
+            string sign = combo_LeftSign1.SelectedItem.ToString();
+            string filterValue = txt_LeftFilter1.Text;
+            string query = colToFilter + " " + sign + " " + filterValue;
+
+            if (String.IsNullOrEmpty(colToFilter) || String.IsNullOrEmpty(sign) ||
+                String.IsNullOrEmpty(filterValue))
+            {
+                txtbox_LeftPod.Text = "Nope";
+                return;
+            }
+
+            List<string> filteredList = new List<string>();
+            string columnName;
+            DataRow[] foundRows = dataDriver.Table.Select(query);
+            string s = combo_LeftReturnCol.SelectedItem.ToString();
+            StringBuilder sb = new StringBuilder();
+            int p = 0;
+
+            foreach (DataRow rec in foundRows)
+            {
+                columnName = rec[s].ToString();
+
+                if (!filteredList.Contains(columnName))
+                {
+                    filteredList.Add(columnName);
+                    sb.Append(columnName).Append("\n");
+                    p++;
+                }
+            }
+
+            txtbox_LeftPod.Text = sb.ToString();
+            //txtbox_LeftPod.Text = p.ToString();
+
         }
     }
 }
