@@ -8,10 +8,11 @@ using CSV_Peruser.CSV_Items;
 
 namespace CSV_Peruser.Data_Items
 {
+    /// <summary>
+    /// Main data reservoir
+    /// </summary>
     class DataDriver
     {
-        public DataPod leftPod = new DataPod();
-        public DataPod rightPod = new DataPod();
 
         public DataTable Table { get; set; }
 

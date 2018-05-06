@@ -86,7 +86,7 @@
             this.data_Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.data_Grid.Location = new System.Drawing.Point(12, 93);
             this.data_Grid.Name = "data_Grid";
-            this.data_Grid.Size = new System.Drawing.Size(648, 279);
+            this.data_Grid.Size = new System.Drawing.Size(742, 279);
             this.data_Grid.TabIndex = 5;
             // 
             // combo_Delimeter
@@ -138,7 +138,7 @@
             this.txtbox_LeftPod.Location = new System.Drawing.Point(760, 12);
             this.txtbox_LeftPod.Name = "txtbox_LeftPod";
             this.txtbox_LeftPod.ReadOnly = true;
-            this.txtbox_LeftPod.Size = new System.Drawing.Size(139, 206);
+            this.txtbox_LeftPod.Size = new System.Drawing.Size(223, 360);
             this.txtbox_LeftPod.TabIndex = 11;
             this.txtbox_LeftPod.Text = "";
             this.txtbox_LeftPod.WordWrap = false;
@@ -179,7 +179,7 @@
             // 
             // btn_LeftFilter
             // 
-            this.btn_LeftFilter.Location = new System.Drawing.Point(679, 81);
+            this.btn_LeftFilter.Location = new System.Drawing.Point(679, 26);
             this.btn_LeftFilter.Name = "btn_LeftFilter";
             this.btn_LeftFilter.Size = new System.Drawing.Size(75, 23);
             this.btn_LeftFilter.TabIndex = 16;
@@ -191,7 +191,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(912, 384);
+            this.ClientSize = new System.Drawing.Size(995, 384);
             this.Controls.Add(this.btn_LeftFilter);
             this.Controls.Add(this.txt_LeftFilter1);
             this.Controls.Add(this.combo_LeftSign1);

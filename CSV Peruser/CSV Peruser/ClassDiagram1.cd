@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CSV_Peruser.CSV_Items.Header">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>CSV Items\Header.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSV_Peruser.CSV_Items.Row">
+    <Position X="1.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAABAAAAAAAIAAAAAAAAAAAABAAAIAAAAAAAA=</HashCode>
+      <FileName>CSV Items\Row.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSV_Peruser.CSV_Items.TableBuilder">
+    <Position X="6.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CIAAAAAAAAACAEAAAAAAAAAAAAAAgAAAAAAAQAAAAAA=</HashCode>
+      <FileName>CSV Items\TableBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSV_Peruser.Data_Items.DataDriver">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data Items\DataDriver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSV_Peruser.Data_Items.Utility">
+    <Position X="3" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data Items\Utility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSV_Peruser.Form1">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IBJgAAABACAAABAAJACCQEASAEAgiAAAAEAAAAIBAQA=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSV_Peruser.Program">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSV_Peruser.Properties.Resources" Collapsed="true">
+    <Position X="3" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSV_Peruser.Properties.Settings" Collapsed="true">
+    <Position X="8.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

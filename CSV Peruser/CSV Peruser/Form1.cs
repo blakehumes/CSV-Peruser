@@ -50,8 +50,6 @@ namespace CSV_Peruser
                     return;
 
                 }
-                StringBuilder sb = new StringBuilder();
-                StringBuilder sb2 = new StringBuilder();
 
                 List<string> headerList = new List<string>();
                 dataDriver.header = tb.HeaderMain;
@@ -60,40 +58,18 @@ namespace CSV_Peruser
                 combo_LeftReturnCol.Items.AddRange(headerNames);
                 dataDriver.Table = tb.Build();
                 data_Grid.DataSource = dataDriver.Table;
-
-
-                /*int i = 1;
-                foreach (string rec in tb.HeaderMain.DataRow)
-                {
-
-                    sb.Append(i).Append("- ").Append(rec).Append(" ,");
-                    i++;
-                }
-                sb2.Append(tb.HeaderMain.DataRow.Count).Append(" ");
-                sb.Append("\n");
-
-                foreach (Row rec in tb.Rows)
-                {
-                    i = 1;
-                    foreach (string rec1 in rec.DataRow)
-                    {
-                        sb.Append(i).Append(" - ").Append(rec1).Append(" ,");
-                        i++;
-                    }
-                    sb2.Append(rec.DataRow.Count).Append(" ");
-                    sb.Append("\n");
-
-                }
-
-                richTextBox1.Text = sb2.Append("\n").Append(sb.ToString()).ToString();*/
+                
             }
             else
             {
                 MessageBox.Show("File type error. Please select a CSV file.", "File Error", MessageBoxButtons.OK);
                 btn_Load.Visible = false;
             }
+
+            txtbox_LeftPod.Text = dataDriver.Table.Columns[47].DataType.ToString();
         }
 
+        // Executes when file is selected
         private void btn_Browse_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -105,6 +81,8 @@ namespace CSV_Peruser
             }
         }
 
+        // Event when the column header filter combo box is changed
+        // Dynamic updates to left most text box
         private void combo_LeftFilter1_SelectedIndexChanged(object sender, EventArgs e)
         {
             List<string> filteredList = new List<string>();
@@ -120,31 +98,32 @@ namespace CSV_Peruser
                 if(!filteredList.Contains(columnName)) filteredList.Add(columnName);
             }
 
-            combo_LeftSelector1.Items.Clear();
-            combo_LeftSelector1.Items.AddRange(filteredList.ToArray());
+            txt_LeftFilter1.Text = "";
             combo_LeftSign1.Items.Clear();
             combo_LeftSign1.Items.AddRange(new string[] { "<", "<=", "=", ">=", ">" });
         }
 
+        // Event executes when the Return Column is select
+        // This is the column whose data appears in the left most text box
         private void combo_LeftReturnCol_SelectedIndexChanged(object sender, EventArgs e)
         {
             List<string> filteredList = new List<string>();
 
             DataRow[] foundRows = dataDriver.Table.Select();
             string s = combo_LeftReturnCol.SelectedItem.ToString();
-            string columnName;
+            string rowName;
             StringBuilder sb = new StringBuilder();
 
 
 
             foreach (DataRow rec in foundRows)
             {
-                columnName = rec[s].ToString();
+                rowName = rec[s].ToString();
 
-                if (!filteredList.Contains(columnName))
+                if (!filteredList.Contains(rowName))
                 {
-                    filteredList.Add(columnName);
-                    sb.Append(columnName).Append("\n");
+                    filteredList.Add(rowName);
+                    sb.Append(rowName).Append("\n");
                 }
             }
 
@@ -159,8 +138,17 @@ namespace CSV_Peruser
 
         }
 
+        // Attempts to filter the leftmost text box to only show rows that meet the filter criteria
+        // Returns if null or incorrect values occur to avoid exception
         private void btn_LeftFilter_Click(object sender, EventArgs e)
         {
+            if (combo_LeftFilter1.SelectedItem == null|| combo_LeftSign1.SelectedItem == null ||
+                String.IsNullOrEmpty(txt_LeftFilter1.Text)) return;
+
+            double testDoub;
+
+            if (!Double.TryParse(txt_LeftFilter1.Text, out testDoub)) return;
+
             string colToFilter = combo_LeftFilter1.SelectedItem.ToString();
             string sign = combo_LeftSign1.SelectedItem.ToString();
             string filterValue = txt_LeftFilter1.Text;
@@ -169,31 +157,32 @@ namespace CSV_Peruser
             if (String.IsNullOrEmpty(colToFilter) || String.IsNullOrEmpty(sign) ||
                 String.IsNullOrEmpty(filterValue))
             {
-                txtbox_LeftPod.Text = "Nope";
                 return;
             }
 
             List<string> filteredList = new List<string>();
-            string columnName;
+            string rowName;
+            string rowName2;
             DataRow[] foundRows = dataDriver.Table.Select(query);
             string s = combo_LeftReturnCol.SelectedItem.ToString();
+            string s2 = combo_LeftFilter1.SelectedItem.ToString();
             StringBuilder sb = new StringBuilder();
             int p = 0;
 
             foreach (DataRow rec in foundRows)
             {
-                columnName = rec[s].ToString();
+                rowName = rec[s].ToString();
+                rowName2 = rec[s2].ToString();
 
-                if (!filteredList.Contains(columnName))
+                if (!filteredList.Contains(rowName))
                 {
-                    filteredList.Add(columnName);
-                    sb.Append(columnName).Append("\n");
+                    filteredList.Add(rowName);
+                    sb.Append(rowName).Append(" - ").Append(rowName2).Append("\n");
                     p++;
                 }
             }
 
             txtbox_LeftPod.Text = sb.ToString();
-            //txtbox_LeftPod.Text = p.ToString();
 
         }
     }
